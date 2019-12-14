@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+
+  </div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    console.log('React Module', React);
+    console.log('ReactDOM Module', ReactDOM);
+
+    const dom = document.getElementById('root');
+
+    class ClassComponent extends React.Component {
+      // 최초로 만들어질 때(render 될 때), state 만들어주기(isClick: false)
+      // 상속을 받았을 때, constructor를 사용하ㅇ는 방법
+      // 1. super - super()
+      // 2. member 변수로 선언 - state
+
+      // state를 바꾸면 render가 다시 실행된다
+      // <button onClick={() => {this.state.isClick = true;}}>click</button> (x)
+      // 그렇기 때문에 this.setState로 실행해야한다. (성능 이유)
+
+      // state를 바꾸기 위해서는 새 state를 선언한 후 사용해야한다.
+      state = {
+        msg: "state",
+        isClick: false
+      };
+
+      render() {
+        const { isClick } = this.state
+        const { text } = this.props.a
+
+        if (isClick === false){
+          return (
+            <div>
+              <h1>제목</h1>
+              <p>{ text }</p>
+              <button onClick={() => {
+                const newState = this.state;
+                newState.isClick = true
+                // this.setState({
+                //   ...this.state,
+                //   isClick: true
+                // })
+                this.setState(newState)
+              }}>click</button>
+            </div>
+          );
+        } else {
+          return (
+            <div>
+              <h1>제목</h1>
+              <p>{ text }</p>
+            </div>
+          );
+        }
+      }
+    }
+
+    ClassComponent.defaultProps = {
+      a: "디폴트값"
+    }
+
+    const FuntionalComponent = props => {
+      function click() {
+        console.log("clicked")
+      }
+      return (
+        <div>
+          <h1>제목</h1>
+          <p>{typeof(props.a)} {props.a}</p>
+          <p>{props.children}</p>
+          <button onClick={click}>click</button>
+        </div>
+      )
+    };
+
+    // number, function, string 전부 props에 넣어줄 수 있다.
+    ReactDOM.render(
+      <>
+        <ClassComponent a="hi"/>
+        <ClassComponent>children</ClassComponent>
+        <FuntionalComponent a="hello" />
+        <FuntionalComponent a={37} />
+        <FuntionalComponent a={() => {}} />
+        <FuntionalComponent>children</FuntionalComponent>
+      </>
+      , 
+      dom
+    )
+  </script>
+</body>
+</html>
