@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+
+  </div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    console.log('React Module', React);
+    console.log('ReactDOM Module', ReactDOM);
+
+    // html dom 생성
+    const dom = document.getElementById('root');
+
+    // react element 생성 - span이라는 tag생성, 
+    const component = React.createElement(
+      'div', null, 'yeji',  
+      React.createElement('p', null, 'hello',
+      React.createElement('p', null, 'react'))
+      );
+
+    // reactdom rendering - dom안에 react element 추가
+    // ReactDOM.render(component, dom)
+
+    // 위의 방법을 JSX로 나타내기 => React.createElement('div', null, 'yeji');
+    // babel을 사용하여 JSX 사용하기
+    ReactDOM.render(
+      <div className="hello">
+        Yeji
+        <p style={{ color: "red" }}>
+          Hello <span>react</span>
+        </p>
+      </div>,
+      dom
+    )
+  </script>
+</body>
+</html>
