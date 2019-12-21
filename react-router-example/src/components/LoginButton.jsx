@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 function LoginButton({ history }) {
   function click() {
@@ -10,7 +10,6 @@ function LoginButton({ history }) {
   }
   return (
     <>
-      <Redirect to="/"></Redirect>
       <button onClick={click}>로그인</button>
     </>
   );
