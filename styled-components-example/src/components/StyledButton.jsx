@@ -1,21 +1,27 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const StyledButton = styled.button`
+// react component
+// const MyButton = ({ className, children }) => (
+//   <button className={className}>{children}</button>
+// );
+
+const MyButton = props => <button {...props}></button>;
+
+const StyledButton = styled(MyButton)`
   background: transparent;
   border-radius: 3px;
   border: 2px solid palevioletred;
   color: palevioletred;
   margin: 0 1em;
   padding: 0.25em 1em;
-`;
 
-const MyButton = () => <button></button>;
-
-const PrimaryStyledButton = styled(StyledButton)`
-  background: palevioletred;
-  color: white;
+  ${props =>
+    props.primary &&
+    css`
+      background: palevioletred;
+      color: white;
+    `};
 `;
 
 export default StyledButton;
-export { PrimaryStyledButton };
