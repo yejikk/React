@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import MyButton from "./components/StyledButton";
+import StyledA from "./components/StyledA";
 
 function test(str) {
   console.log(str);
@@ -16,7 +17,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          <MyButton primary>버튼</MyButton>
+          <StyledA href="http://google.com" target="_BLANK">
+            링크
+          </StyledA>
         </p>
       </header>
     </div>
