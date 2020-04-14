@@ -1,31 +1,25 @@
 import React from "react";
 import "./App.css";
 
-const data = [
-  {
-    title: "Node",
-    value: 0,
-  },
-  {
-    title: "React",
-    value: 1,
-  },
-];
+const Loading = () => <div>Loading ... </div>;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        {data.map((item) => (
-          <>
-            <p>
-              {item.title} - {item.value}
-            </p>
-          </>
-        ))}
-      </header>
-    </div>
-  );
+class Study extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+    };
+  }
+
+  comment() {
+    const con = 1;
+    const res = con > 0 ? true : false;
+  }
+
+  render() {
+    const { loading } = this.state;
+    return <>{loading ? <Loading /> : <div>this is a webpage</div>}</>;
+  }
 }
 
-export default App;
+export default Study;
